@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CreatorHQ</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: #0a0a0a; color: #f5f5f5; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid #222; position: sticky; top: 0; background: #0a0a0aee; backdrop-filter: blur(8px); }
+    .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.02em; }
+    .hq { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg,#22c55e,#16a34a); display:grid; place-items:center; font-size: 11px; font-weight: 800; color: #04140a; }
+    nav a { color: #a3a3a3; text-decoration: none; margin-left: 16px; font-size: 14px; }
+    nav a:hover { color: #fff; }
+    main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 64px; }
+    h1 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin: 0 0 10px; }
+    .sub { color: #a3a3a3; max-width: 42rem; line-height: 1.5; margin-bottom: 22px; }
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+    .btn { appearance: none; border: 0; border-radius: 999px; padding: 10px 16px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+    .btn-primary { background: #22c55e; color: #04140a; }
+    .btn-ghost { background: #171717; color: #f5f5f5; border: 1px solid #2a2a2a; }
+    .stage { background: #111; border: 1px solid #222; border-radius: 16px; overflow: hidden; }
+    .stage-hd { padding: 12px 14px; border-bottom: 1px solid #222; display:flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+    .stage-hd strong { font-size: 14px; }
+    .muted { color: #737373; font-size: 12px; }
+    .player { aspect-ratio: 16/9; background: #000; }
+    iframe { width: 100%; height: 100%; border: 0; }
+    .grid { display: grid; gap: 14px; margin-top: 18px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card { background: #111; border: 1px solid #222; border-radius: 14px; padding: 14px; }
+    .card h3 { margin: 0 0 6px; font-size: 15px; }
+    .card p { margin: 0; color: #a3a3a3; font-size: 13px; line-height: 1.45; }
+    form { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    input { flex: 1; min-width: 160px; background: #0a0a0a; border: 1px solid #333; color: #fff; border-radius: 10px; padding: 10px 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="mark"><span class="hq">HQ</span> CreatorHQ</div>
+    <nav>
+      <a href="#live">Live</a>
+      <a href="#watch">Watch</a>
+      <a href="#connect">Connect</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Watch. Support. Get paid.</h1>
+    <p class="sub">CreatorHQ is a hub around Kick — official embeds only, no paid stream ingest. Creators go live on Kick. Fans hang out, interact, and support here.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#watch">Watch Kick</a>
+      <a class="btn btn-ghost" href="#connect">Connect Kick</a>
+    </div>
+
+    <section id="live" class="card" style="margin-bottom:18px">
+      <h3>Live lounge</h3>
+      <p>Kick-first CTAs. Mux go-live is parked. Twitch embeds can come later.</p>
+    </section>
+
+    <section id="watch" class="stage">
+      <div class="stage-hd">
+        <strong>Watch · official Kick embed</strong>
+        <span class="muted" id="watch-label">@xqc</span>
+      </div>
+      <div class="player">
+        <iframe id="kick-frame" title="Kick player" allowfullscreen
+          src="https://player.kick.com/xqc"></iframe>
+      </div>
+    </section>
+
+    <section id="connect" class="card" style="margin-top:18px">
+      <h3>Connect Kick</h3>
+      <p>Link a Kick username for watch previews. You still go live on Kick. <span class="muted">Mux go-live parked.</span></p>
+      <form id="connect-form">
+        <input id="kick-user" placeholder="kickusername" autocomplete="off" spellcheck="false" />
+        <button class="btn btn-primary" type="submit">Watch that channel</button>
+      </form>
+    </section>
+
+    <div class="grid">
+      <div class="card"><h3>Interact</h3><p>24/7 creator rooms, mods, and polls come next — around the Kick stage.</p></div>
+      <div class="card"><h3>Support</h3><p>Tips / memberships (Stripe) so fans can unlock sub-only talk and polls.</p></div>
+    </div>
+  </main>
+  <script>
+    const form = document.getElementById('connect-form');
+    const input = document.getElementById('kick-user');
+    const frame = document.getElementById('kick-frame');
+    const label = document.getElementById('watch-label');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const u = (input.value || '').trim().replace(/^@/, '').toLowerCase();
+      if (!/^[a-z0-9_]{3,25}$/.test(u)) { alert('Use 3–25 letters, numbers, or underscores'); return; }
+      frame.src = 'https://player.kick.com/' + encodeURIComponent(u);
+      label.textContent = '@' + u;
+      document.getElementById('watch').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
