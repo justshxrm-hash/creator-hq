@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>CreatorHQ — Watch. Support. Get paid.</title>
+    <meta name="description" content="Sherman Bias's all-in-one creator hub — watch via official Kick embeds, tip and subscribe, and grow without paid ingest." />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("creatorhq.theme") || localStorage.getItem("theme");
+          var pref = stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
+          var mode =
+            pref === "light" || pref === "dark"
+              ? pref
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          var root = document.documentElement;
+          root.classList.remove("light", "dark");
+          root.classList.add(mode);
+          root.style.colorScheme = mode;
+          root.setAttribute("data-theme", mode);
+          root.setAttribute("data-theme-preference", pref);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+          document.documentElement.style.colorScheme = "dark";
+        }
+      })();
+    </script>
+    <meta name="theme-color" content="#0a0a0c" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="CreatorHQ" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icons/icon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <meta property="og:title" content="CreatorHQ — Watch. Support. Get paid." />
+    <meta property="og:description" content="Creators earn. Audiences watch, interact, and support favorites. Official Kick embeds. Always-on rooms." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="CreatorHQ" />
+    <meta property="og:url" content="https://creatorhq.app/" />
+    <meta property="og:image" content="https://creatorhq.app/og.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CreatorHQ — Watch. Support. Get paid." />
+    <meta name="twitter:description" content="Creators earn. Audiences watch, interact, and support favorites. Official Kick embeds. Always-on rooms." />
+    <meta name="twitter:image" content="https://creatorhq.app/og.png" />
+    
+    <style>
+      /* Safe area insets for notched devices */
+      :root {
+        --sat: env(safe-area-inset-top);
+        --sar: env(safe-area-inset-right);
+        --sab: env(safe-area-inset-bottom);
+        --sal: env(safe-area-inset-left);
+      }
+      
+      /* Prevent overscroll/bounce on iOS */
+      html, body {
+        overscroll-behavior: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      /* Disable text selection on mobile for app-like feel */
+      * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+      }
+      
+      /* Allow text selection in inputs and textareas */
+      input, textarea {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+             user-select: text;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-DYBkXO4A.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-LoZ-nJi-.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
